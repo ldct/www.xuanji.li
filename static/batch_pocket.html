@@ -1,0 +1,21 @@
+<html>
+<head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+</head>
+
+<body>
+
+<script>
+
+$.ajax({
+  'type': 'GET',
+  'url': "https://getpocket.com/v3/oauth/request",
+  'crossDomain': true, 
+  'data': {'consumer_key': "11903-6214395f06bd09aa4b07dd76", 'redirect_uri': "http://www.google.com"},
+  'dataType': 'jsonp'
+  });
+  
+</script>
+
+</body>
+</html>

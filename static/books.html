@@ -1,0 +1,180 @@
+
+<script>
+books = [
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1372847500l/5907.jpg", "title": "The Hobbit", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1371849682l/34.jpg", "title": "The Fellowship of the Ring (The Lord of the Rings, #1)", "rating": "5"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1333617993l/119322.jpg", "title": "The Golden Compass (His Dark Materials, #1)", "rating": "5"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1356549015l/519933.jpg", "title": "The Lives of Christopher Chant (Chrestomanci, #4)", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1361572757l/3.jpg", "title": "Harry Potter and the Sorcerer's Stone (Harry Potter, #1)", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1320482229l/119324.jpg", "title": "The Subtle Knife (His Dark Materials, #2)", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1343185059l/140225.jpg", "title": "The Voyage of the Dawn Treader (Chronicles of Narnia, #3)", "rating": "5"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1327465278l/77276.jpg", "title": "A Swiftly Tilting Planet (Time, #3)", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1366212852l/113436.jpg", "title": "Eragon (Inheritance, #1)", "rating": "1"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1353029077l/100915.jpg", "title": "The Lion, the Witch, and the Wardrobe (Chronicles of Narnia, #1)", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1329061522l/18131.jpg", "title": "A Wrinkle in Time (Time, #1)", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1361975680l/2657.jpg", "title": "To Kill a Mockingbird", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1303390735l/960.jpg", "title": "Angels & Demons  (Robert Langdon, #1)", "rating": "1"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1327872845l/7613.jpg", "title": "Animal Farm", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1348990566l/5470.jpg", "title": "1984", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1327868566l/2429135.jpg", "title": "The Girl with the Dragon Tattoo (Millennium, #1)", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1327882682l/1618.jpg", "title": "The Curious Incident of the Dog in the Night-Time", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1351643740l/4381.jpg", "title": "Fahrenheit 451", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1327865673l/7082.jpg", "title": "Do Androids Dream of Electric Sheep?", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1320552628l/414999.jpg", "title": "Childhood's End", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1353048590l/6334.jpg", "title": "Never Let Me Go", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1344268476l/2612.jpg", "title": "The Tipping Point: How Little Things Can Make a Big Difference", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1344270782l/40102.jpg", "title": "Blink: The Power of Thinking without Thinking", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1344266315l/3228917.jpg", "title": "Outliers: The Story of Success", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1365984624l/2318271.jpg", "title": "The Last Lecture", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1327879638l/6900.jpg", "title": "Tuesdays With Morrie", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1364033163l/375802.jpg", "title": "Ender's Game (Ender's Saga, #1)", "rating": "5"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1327656754l/11.jpg", "title": "The Hitchhiker's Guide to the Galaxy (Hitchhiker's Guide to the Galaxy, #1)", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1320416087l/29581.jpg", "title": "Foundation and Empire (Foundation, #2)", "rating": "1"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1344265959l/149049.jpg", "title": "The Fountains of Paradise", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1156897088l/350.jpg", "title": "Stranger in a Strange Land", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1320416085l/29579.jpg", "title": "Foundation (Foundation, #1)", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1342493368l/3636.jpg", "title": "The Giver", "rating": "5"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1357153807l/112537.jpg", "title": "Rendezvous with Rama (Rama, #1)", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1329189152l/18122.jpg", "title": "The Amber Spyglass (His Dark Materials, #3)", "rating": "5"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1361039191l/1.jpg", "title": "Harry Potter and the Half-Blood Prince (Harry Potter, #6)", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1370023538l/136251.jpg", "title": "Harry Potter and the Deathly Hallows (Harry Potter, #7)", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1361039183l/2.jpg", "title": "Harry Potter and the Order of the Phoenix (Harry Potter, #5)", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1362278317l/5.jpg", "title": "Harry Potter and the Prisoner of Azkaban (Harry Potter, #3)", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1370043634l/15881.jpg", "title": "Harry Potter and the Chamber of Secrets (Harry Potter, #2)", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1361482611l/6.jpg", "title": "Harry Potter and the Goblet of Fire (Harry Potter, #4)", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1295660894l/7967.jpg", "title": "Speaker for the Dead (Ender's Saga, #2)", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1352781471l/9532.jpg", "title": "Ender's Shadow (Shadow, #1)", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1316131283l/8648.jpg", "title": "Xenocide (Ender's Saga, #3)", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1312035387l/31360.jpg", "title": "Children of the Mind (Ender's Saga, #4)", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1316130837l/9534.jpg", "title": "Shadow of the Hegemon (Shadow, #2)", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1317791313l/234724.jpg", "title": "Shadow Puppets (Shadow, #3)", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1316635847l/7956.jpg", "title": "Treason", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1309282484l/18423.jpg", "title": "The Left Hand of Darkness", "rating": "5"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1320467562l/5297.jpg", "title": "The Picture of Dorian Gray", "rating": "5"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1298415523l/15241.jpg", "title": "The Two Towers (The Lord of the Rings, #2)", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1367746343l/18512.jpg", "title": "The Return of the King (The Lord of the Rings, #3)", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1285017005l/22328.jpg", "title": "Neuromancer (Sprawl, #1)", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1308814770l/65605.jpg", "title": "The Magician's Nephew (Chronicles of Narnia, #1)", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1308814880l/121749.jpg", "title": "Prince Caspian: The Return to Narnia (Chronicles of Narnia, #2)", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1308814830l/84369.jpg", "title": "The Last Battle (Chronicles of Narnia, #7)", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1336139237l/65641.jpg", "title": "The Silver Chair (Chronicles of Narnia, #4)", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1327781893l/38709.jpg", "title": "Holes (Holes, #1)", "rating": "5"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1358276407l/48855.jpg", "title": "The Diary of a Young Girl", "rating": "1"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1327945104l/249747.jpg", "title": "Artemis Fowl (Artemis Fowl, #1)", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1309211401l/6310.jpg", "title": "Charlie and the Chocolate Factory (Charlie Bucket, #1)", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1367545443l/157993.jpg", "title": "The Little Prince", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1327887365l/6294.jpg", "title": "Howl's Moving Castle (Howl's Moving Castle, #1)", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1345499790l/703292.jpg", "title": "The Witch of Blackbird Pond", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1333577589l/8695.jpg", "title": "The Restaurant at the End of the Universe (Hitchhiker's Guide, #2)", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1333577589l/8694.jpg", "title": "Life, the Universe and Everything (Hitchhiker's Guide, #3)", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1369563116l/8698.jpg", "title": "So Long, and Thanks for All the Fish (Hitchhiker's Guide, #4)", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1320725132l/360.jpg", "title": "Mostly Harmless (Hitchhiker's Guide, #5)", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1314739489l/24113.jpg", "title": "Gödel, Escher, Bach: An Eternal Golden Braid", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1320425845l/61975.jpg", "title": "Dragonflight (Pern, #1)", "rating": "1"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1327356788l/28249.jpg", "title": "The Magicians' Guild (The Black Magician Trilogy, #1)", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1327357942l/28251.jpg", "title": "The High Lord (The Black Magician Trilogy, #3)", "rating": "1"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1327357280l/28250.jpg", "title": "The Novice (The Black Magician Trilogy, #2)", "rating": "1"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1351196725l/833710.jpg", "title": "The Merchant of Death (Pendragon, #1)", "rating": "1"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1360058235l/43035.jpg", "title": "White Fang", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1327295457l/40290.jpg", "title": "Seventh Son (Tales of Alvin Maker, #1)", "rating": "1"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1327786035l/28922.jpg", "title": "An Artist of the Floating World", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1334938946l/10374.jpg", "title": "Hard-Boiled Wonderland and the End of the World", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1303252999l/968.jpg", "title": "The Da Vinci Code (Robert Langdon, #2)", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1328698658l/4900.jpg", "title": "Heart of Darkness", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1312031956l/6493321.jpg", "title": "Logicomix: An Epic Search for Truth", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1365993100l/2299856.jpg", "title": "Simplexity: Why Simple Things Become Complex", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1316637611l/472609.jpg", "title": "Critical Mass: How One Thing Leads to Another", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1352173156l/24774.jpg", "title": "Clockwork", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1327872673l/6319.jpg", "title": "The BFG", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1320393139l/6693.jpg", "title": "Fantastic Mr. Fox", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1320498291l/6690.jpg", "title": "Danny the Champion of the World", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1316131195l/3220405.jpg", "title": "Ender in Exile (Ender's Saga, #1.5)", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1344263875l/6516450.jpg", "title": "What the Dog Saw and Other Adventures", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1317793269l/207949.jpg", "title": "King of Infinite Space: Donald Coxeter, the Man Who Saved Geometry", "rating": "1"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1320488808l/6943893.jpg", "title": "The Fourth Star: Four Generals and the Epic Struggle for the Future of the United States Army", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1356466954l/599877.jpg", "title": "The Shape of Space", "rating": "5"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1320540686l/222146.jpg", "title": "Masters of Doom: How Two Guys Created an Empire and Transformed Pop Culture", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1344675393l/658332.jpg", "title": "Free as in Freedom: Richard Stallman's Crusade for Free Software", "rating": "5"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1328834764l/1746425.jpg", "title": "Masterminds of Programming: Conversations with the Creators of Major Programming Languages", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1327909092l/1202.jpg", "title": "Freakonomics: A Rogue Economist Explores the Hidden Side of Everything", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1308117804l/6402364.jpg", "title": "SuperFreakonomics: Global Cooling, Patriotic Prostitutes And Why Suicide Bombers Should Buy Life Insurance", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1309212378l/4799.jpg", "title": "Cannery Row", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1327880087l/2839.jpg", "title": "Bridge to Terabithia", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1320506924l/24777.jpg", "title": "Count Karlstein", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1255600885l/6982282.jpg", "title": "Men In White: The Untold Story Of Singapore's Rulling Political Party", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1336765030l/13221379.jpg", "title": "What Money Can't Buy: The Moral Limits of Markets", "rating": "3"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1355924043l/9858734.jpg", "title": "Norwegian Wood", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1327861368l/11084145.jpg", "title": "Steve Jobs", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1344271238l/45776.jpg", "title": "Feynman's Rainbow: A Search for Beauty in Physics and in Life", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1360564614l/13525945.jpg", "title": "So Good They Can't Ignore You: Why Skills Trump Passion in the Quest for Work You Love", "rating": "5"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1358647812l/662.jpg", "title": "Atlas Shrugged", "rating": "1"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1355869389l/9549300.jpg", "title": "Do More Faster: Techstars Lessons to Accelerate Your Startup", "rating": "2"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1320409497l/98685.jpg", "title": "Genius: The Life and Science of Richard Feynman", "rating": "4"},
+{"image": "http://d202m5krfqbpi5.cloudfront.net/books/1324147949l/8677004.jpg", "title": "The Art of Readable Code", "rating": "3"},
+{"image": "http://bks8.books.google.com/books?id=5FyoMgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "Emperor Mage", "rating": "0"},
+{"image": "http://bks4.books.google.com/books?id=Z_IO20TJBN8C&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "Fast Food Nation", "rating": "0"},
+{"image": "http://bks7.books.google.com/books?id=d999Z2KbZJYC&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "On Writing", "rating": "0"},
+{"image": "http://bks6.books.google.com/books?id=yldYPwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "Dune", "rating": "0"},
+{"image": "http://bks5.books.google.com/books?id=4QACyaPQFJQC&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "The Andromeda Strain", "rating": "0"},
+{"image": "http://bks8.books.google.com/books?id=W5vJlwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "Mort", "rating": "0"},
+{"image": "http://bks7.books.google.com/books?id=pylJbfNIwoIC&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "Charlotte's Web (full color)", "rating": "0"},
+{"image": "http://bks8.books.google.com/books?id=Z8qDw1M478oC&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "Castle in the Air", "rating": "0"},
+{"image": "http://bks2.books.google.com/books?id=GwiBPwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "Shadow of the Giant", "rating": "0"},
+{"image": "http://bks8.books.google.com/books?id=s1zvRAAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "Alice in Wonderland", "rating": "0"},
+{"image": "http://bks6.books.google.com/books?id=eH9lPwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "The Five People You Meet in Heaven", "rating": "0"},
+{"image": "http://bks1.books.google.com/books?id=rSE4j-kKv7oC&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "Matilda", "rating": "0"},
+{"image": "http://bks1.books.google.com/books?id=GmE-PgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "Boy", "rating": "0"},
+{"image": "http://bks9.books.google.com/books?id=NU4LAAAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "Roald Dahl's Revolting Rhymes", "rating": "0"},
+{"image": "http://bks4.books.google.com/books?id=jx9JsHry1PgC&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "A Life Decoded", "rating": "0"},
+{"image": "http://bks9.books.google.com/books?id=VJ_bOgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "Creating a Life You'll Love", "rating": "0"},
+{"image": "http://bks8.books.google.com/books?id=M3vK60jcLMAC&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "More Joel on Software", "rating": "0"},
+{"image": "http://bks2.books.google.com/books?id=n8jlOWI1ajwC&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "Go to", "rating": "0"},
+{"image": "http://bks5.books.google.com/books?id=nneBa6-mWfgC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api", "title": "Coders at Work", "rating": "0"},
+{"image": "http://bks1.books.google.com/books?id=oV2qQgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "Los Alamos from Below", "rating": "0"},
+{"image": "http://bks0.books.google.com/books?id=BsqZAAAAIAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "Hackers & painters", "rating": "0"},
+{"image": "http://bks9.books.google.com/books?id=5ePBQgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "A Beautiful Mind", "rating": "0"},
+{"image": "http://bks2.books.google.com/books?id=USBbi1Dyw4sC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api", "title": "Chris Crawford on game design", "rating": "0"},
+{"image": "http://bks1.books.google.com/books?id=PQrtV67iqgEC&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "Talent Is Overrated", "rating": "0"},
+{"image": "http://bks0.books.google.com/books?id=aAYcmC-_sM8C&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "The Art of Learning", "rating": "0"},
+{"image": "http://bks2.books.google.com/books?id=wJMGAAAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "Lessons in the Fundamentals of Go", "rating": "0"},
+{"image": "http://bks9.books.google.com/books?id=fUYPAQAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "The mythical man-month", "rating": "0"},
+{"image": "http://bks0.books.google.com/books?id=D44fAQAAIAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api", "title": "Close to the machine", "rating": "0"},
+
+]
+</script>
+
+<style>
+img {
+  width:148px;
+  height:223px;
+  padding:1px;
+}
+img.rated-4, img.rated-5 {
+  width:298px;
+  height:448px;
+  padding:1px;
+}
+</style>
+
+<script src="../isicp/js/jquery.min.js"></script>
+<script src="http://isotope.metafizzy.co/jquery.isotope.min.js"></script>
+
+<body>
+  <div id="container"></div>
+  <script>
+  for (b in books) {
+    img = $("<div class='item'>").append($("<img>", {'src': books[b].image, 'title': books[b].title, 'class': "rated-" + books[b].rating}))
+
+    $("#container").append(img);
+  }
+
+  $("#container").isotope({
+    itemSelector: '.item',
+    sortBy: 'random',
+    masonry: {
+      columnWidth: 50
+    },
+  });
+  </script>
+</body>
+    

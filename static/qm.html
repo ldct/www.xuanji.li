@@ -1,0 +1,318 @@
+<head>
+<script src="underscore-min.js"></script>
+<script src="../isicp/js/helper.js"></script>
+<script src="../js-scheme-stk/libs/raphael-min.js"></script>
+</head>
+<body>
+<script>
+
+function pure_state(bsToAmps) {
+  this.bsToAmps = bsToAmps;
+}
+
+pure_state.prototype = {
+  toString: function() {
+    return _.map(this.bsToAmps, function(amp, bs) {
+      return "{0}|{1})".format(amp, bs);
+    }).join(' + ');
+  },
+  tp: function(s) {
+    var ret = {}
+    for (var i in s.bsToAmps) {
+      for (var j in this.bsToAmps) {
+        ret[i + j] = s.bsToAmps[i] * this.bsToAmps[j];
+      }
+    }
+    return new pure_state(ret);
+  },
+  sum_amps: function() {
+    var res = 0;
+    _.each(this.bsToAmps, function(amp, bs) {
+      res += Math.pow(Math.abs(amp),2);
+    });
+    return res;
+  },
+  apply_qm: function(operator) {
+    var ret = {};
+
+    function add_to_ret(bs, a) {
+      if (bs in ret) {
+        ret[bs] += a;
+      } else {
+        ret[bs] = a;
+      }
+    }
+
+    _.each(this.bsToAmps, function(amp, bs) {
+      var res = operator.apply(null, (bs.split('')));
+      _.each(res, function(new_amp, new_bs) {
+        add_to_ret(new_bs, new_amp * amp);
+      });
+    });
+
+    return new pure_state(ret);
+  },
+  measure: function(which_qubit) {
+    var z = {};
+    var o = {};
+
+    _.each(this.bsToAmps, function(amp, bs) {
+      if (bs[which_qubit] === "0") {
+        z[bs] = amp;
+      } else {
+        o[bs] = amp;
+      }
+    });
+
+
+    var pz = new pure_state(z);
+    var po = new pure_state(o);
+
+    //since states belonging to different probability distributions never interfere, we don't need to normalize them
+    return new mixed_state([{state: pz, prob: pz.sum_amps()}, {state: po, prob: po.sum_amps()}]);
+  },
+  delete_qubit: function(which_qubit) {
+    var ret = {};
+    _.each(this.bsToAmps, function(amp, bs){
+      ret[bs.slice(0,which_qubit) + bs.slice(which_qubit + 1)] = amp; //TODO: make them interfere
+    })
+
+    return new pure_state(ret);
+  }
+}
+
+function mixed_state(psAndProb) {
+  this.psAndProb = psAndProb;
+}
+
+mixed_state.prototype = {
+  toString: function() {
+    return _.map(this.psAndProb, function(s) {
+      return "{0}: {1}".format(s.prob, s.state.toString());
+    }).join('\n');
+  },
+  tp: function(s) {
+    var ret = [];
+    for (var i in s.psAndProb) {
+      for (var j in this.psAndProb) {
+        ret.push({state: s.psAndProb[i].state.tp(this.psAndProb[j].state),
+                  prob: s.psAndProb[i].prob * this.psAndProb[j].prob});
+      }
+    }
+    return new mixed_state(ret);
+  },
+  apply_qm: function(operator) {
+    return new mixed_state(_.map(this.psAndProb, function(p) {
+      return {state: p.state.apply_qm(operator), prob: p.prob}
+    }));
+  },
+  measure: function(which_qubit) {
+    var ret = [];
+
+    _.each(this.psAndProb, function(p) {
+      var ms = p.state.measure(which_qubit);
+      _.each(ms.psAndProb, function(new_p){
+        ret.push({state: new_p.state, prob: new_p.prob * p.prob});
+      });
+    });
+
+    return new mixed_state(ret);
+  },
+  delete_qubit: function(which_qubit) {
+    return new mixed_state(_.map(this.psAndProb, function(p) {
+      return {state: p.state.delete_qubit(which_qubit), prob: p.prob}
+    }));
+  }
+}
+
+function hadamard(x) {
+  if (x === '0') {
+    return {'0': 1, '1': 1};
+  } else {
+    return {'0': 1, '1': -1};
+  }
+}
+
+function make_U_f(f) {
+  return function(x,y) {
+    var ret = {}
+
+    ix = parseInt(x);
+    iy = parseInt(y);
+
+    ret[x + String((iy + f(ix)) % 2)] = 1;
+
+    return ret;
+  }
+}
+
+var identity_U_f = make_U_f(function(t) {return t});
+var inversion_U_f = make_U_f(function(t) {return 1 - t});
+var zero_U_f = make_U_f(function(t) {return 0});
+var one_U_f = make_U_f(function(t) {return 1});
+
+var CNOT = identity_U_f;
+
+function controlled_Z(control, target) {
+  if (control === "0") {
+    var ret = {};
+    ret[control + target] = 1;
+    return ret;
+  } else {
+    if (target === "0") {
+      return {"10": 1};
+    } else {
+      return {"11": -1}
+    }
+  }
+  return ret;
+}
+
+function embed_gate(gate, positions) {
+  return function() {
+    var args = _.toArray(arguments);
+
+    var subset_args = _.map(positions, function(i) {return args[i]});
+    var transformed_qubit = gate.apply(null, subset_args)
+
+    function combineBS(full_bs, short_bs) {
+      var ret = full_bs;
+      for (var i in positions) {
+        var pos = positions[i];
+        ret[pos] = short_bs[i];
+      }
+      return ret.join('');
+    }
+
+    var ret = {};
+    for (var bs in transformed_qubit) {
+      ret[combineBS(args, bs)] = transformed_qubit[bs];
+    }
+    return ret;
+  }
+}
+
+function execute_chain(state, chain) {
+  if (chain.length === 0) {
+    return state;
+  }
+  var command = chain[0];
+  if (command.type === "unitary") {
+    var gate = command.gate;
+    if (command.which_qubit) {
+      gate = embed_gate(gate, command.which_qubit);
+    }
+    return execute_chain(state.apply_qm(gate), chain.slice(1));
+  } else if (command.type === "measure") {
+    return execute_chain(state.measure(command.which_qubit), chain.slice(1));
+  } else if (command.type === "delete") {
+    return execute_chain(state.delete_qubit(command.which_qubit), chain.slice(1));
+  } else {
+    throw "Error: command type not recognised: {0}".format(command.type);
+  }
+}
+
+function make_state(s) {
+  return new mixed_state([{state: new pure_state(s), prob: 1}]);
+}
+var o = make_state({'1': 1});
+var z = make_state({'0': 1});
+var p = make_state({'1': 1, '0': 1});
+var m = make_state({'1': 1, '0': -1});
+
+var deustch_chain = [
+  {'type': 'unitary', 'gate': zero_U_f, 'which_qubit': [0, 1], 'gap': []},
+  {'type': 'unitary', 'gate': hadamard, 'which_qubit': [0], 'gap': []}
+]
+
+console.log(execute_chain(p.tp(m), deustch_chain).toString());
+
+var teleport_initial = make_state({'0': 0.1, '1': 0.9}).tp(make_state({'00': 1, '11': 1}));
+
+var teleport_chain = [
+  {'type': 'unitary', 'gate': CNOT, 'which_qubit': [0,1], 'gap': []},
+  {'type': 'measure', 'which_qubit': 1, 'gap': []},
+  {'type': 'unitary', 'gate': CNOT, 'which_qubit': [1,2], 'gap': []},
+  {'type': 'delete', 'which_qubit': 1, 'gap': []},
+  {'type': 'unitary', 'gate': hadamard, 'which_qubit': [0], 'gap': [1]},
+  {'type': 'unitary', 'gate': controlled_Z, 'which_qubit': [0, 1], 'gap': [1]},
+  {'type': 'delete', 'which_qubit': 0, 'gap': [1]}
+]
+
+console.log(execute_chain(teleport_initial, teleport_chain).toString());
+
+var paper = Raphael(500, 50, 3200, 500);
+
+var BOX_AND_GAP = 50;
+var BOX = 20;
+
+function combine(which_qubit, gap) {
+  if (typeof(which_qubit) === "number") {
+    which_qubit = [which_qubit];
+  }
+
+  if (gap === undefined) {
+    return which_qubit;
+  }
+
+  _.each(gap.reverse(), function(gap_elem){
+    which_qubit = _.map(which_qubit, function(q) {
+      if (q < gap_elem) {
+        return q;
+      } else {
+        return q+1;
+      }
+    })
+  })
+
+  return which_qubit;
+}
+
+function draw_chain(chain, x, y, no_qubits) {
+  if (chain.length === 0) {
+    return;
+  }
+  var head = chain[0];
+
+  var which_qubit = combine(head.which_qubit, head.gap);
+
+  for (var i = 0; i < no_qubits + head.gap.length; i++) {
+    var ty = y + BOX_AND_GAP * i;
+    paper.path("M{0},{1}L{2},{3}".format(x - 50, ty + BOX/2, x + 90, ty + BOX/2));
+  }
+
+  _.each(which_qubit, function(q){
+    var ty = y + BOX_AND_GAP * q;
+    paper.circle(x, ty + BOX/2, 2);
+  });
+
+
+
+
+  if (head.type === "delete") {
+    var ty = y + BOX_AND_GAP * which_qubit[0];
+    paper.rect(x, ty, BOX, BOX).attr({'fill': '#ffffff'});
+    paper.path("M{0},{1}L{2},{3}".format(x, ty, x + BOX, ty+BOX));
+    paper.path("M{0},{1}L{2},{3}".format(x + BOX, ty, x, ty+BOX));
+
+    draw_chain(chain.slice(1), x + 90, y, no_qubits - 1);
+    return;
+  } else if (head.type === "measure") {
+    var ty = y + BOX_AND_GAP * which_qubit[0];
+    paper.rect(x, ty, BOX, BOX).attr({'fill': '#ffffff'});
+    paper.path("M{0},{1}L{2},{3}".format(x+BOX, ty, x, ty+BOX));
+  } else if (head.type === "unitary") {
+    var min_qubit = _.min(which_qubit);
+    var max_qubit = _.max(which_qubit);
+
+    paper.rect(x, y + BOX_AND_GAP * min_qubit, BOX, BOX + BOX_AND_GAP * (max_qubit - min_qubit)).attr({'fill': '#ffffff'});
+    paper.text(x, y + (no_qubits + head.gap.length) * BOX_AND_GAP, head.gate.toString()).attr({'text-anchor': 'start', 'font-size': '10px'});;
+
+  }
+  draw_chain(chain.slice(1), x + 90, y, no_qubits);
+}
+
+draw_chain(teleport_chain, 50, 10, 3);
+
+</script>
+</body>

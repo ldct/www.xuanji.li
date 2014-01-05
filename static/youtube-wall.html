@@ -1,0 +1,107 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://isotope.metafizzy.co/jquery.isotope.min.js"></script>
+
+<style>
+img {
+  width:238px;
+  height:130px;
+  padding:1px;
+}
+img.rated-4, img.rated-5 {
+  width:478px;
+  height:260px;
+  padding:1px;
+}
+</style>
+
+</head>
+<body>
+
+<div id="container"></div>
+
+<div id="player" style="position: absolute"></div>
+
+<script>
+  var tag = document.createElement('script');
+
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '130',
+      width: '238',
+      videoId: 'M7lc1UVf-VE',
+      events: {
+        'onReady': onPlayerReady,
+      },
+    });
+  }
+
+  function onPlayerReady(event) {
+    event.target.playVideo();
+  }
+
+  function stopVideo() {
+    player.stopVideo();
+  }
+</script>
+
+<script>
+var playlist = [{'iden': "1vhFnTjia_I", 'rating': 3},
+				{'iden': "r6BC_uQEEmM", 'rating': 3},
+				{'iden': "M_-qbbCsAeM", 'rating': 3},
+				{'iden': "guwfoRjwuS4", 'rating': 3},
+				{'iden': "tITylmssNzY", 'rating': 3},
+				{'iden': "kVRBBTWCbS0", 'rating': 3},
+				{'iden': "OW7WH2j4Y3o", 'rating': 3},
+				{'iden': "RBumgq5yVrA", 'rating': 3, 'title': "Let Her Go", 'by': "Passenger"},
+				{'iden': "JzIK5FaC38w", 'rating': 3},
+				{'iden': "IrcFe0_pZEs", 'rating': 3},
+				{'iden': "cdN2bfov9JQ", 'rating': 3},
+				{'iden': "ZGwDYBWEDSc", 'rating': 3},
+				{'iden': "e80qhyovOnA", 'rating': 3},
+				{'iden': "gdmHHoI9beM", 'rating': 3},
+				{'iden': "PBEXSiFzOfU", 'rating': 3},
+				{'iden': "t1TcDHrkQYg", 'rating': 3},
+				{'iden': "oyvOJlX4ZkE", 'rating': 3},
+				]
+
+
+function make_url(iden) {
+	return "http://img.youtube.com/vi/" + iden + "/0.jpg"
+}
+
+function make_play(iden) {
+	return function() {
+		var offset = $("#pic-" + iden).offset();
+		player.loadVideoById(iden, 0, "large");
+
+		$("#player").css('top', offset.top);
+		$("#player").css('left', offset.left);
+	}
+}
+
+for (var i=0; i<playlist.length; i++) {
+	var vid = playlist[i];
+
+	var img = $("<div></div>", {'class': 'item', 'id': 'pic-' + vid.iden}).append($("<img>", {'src': make_url(vid.iden), 'class': "rated-" + vid.rating})).click(make_play(vid.iden));
+	$("#container").append(img);
+}
+
+$("#container").isotope({
+  itemSelector: '.item',
+  sortBy: 'random',
+  masonry: {
+    columnWidth: 120
+  },
+});
+
+</script>
+
+<body>
+</html>
