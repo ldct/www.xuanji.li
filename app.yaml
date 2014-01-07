@@ -22,9 +22,6 @@ handlers:
 - url: /echo/.*
   script: echo.app
 
-- url: /pocket/.*
-  script: pocket.app
-
 - url: /goodreads/.*
   script: goodreads.app
 
