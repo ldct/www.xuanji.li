@@ -13,6 +13,8 @@ parallel-text/*
 libgit2.js/*
 js-scheme-stk/*
 isicp/*
+goodreads-wall/*
+libs/*
 random-projects/*
 
 goodreads/DEV_KEY_SECRET

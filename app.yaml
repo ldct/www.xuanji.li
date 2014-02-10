@@ -22,8 +22,8 @@ handlers:
 - url: /echo/.*
   script: echo.app
 
-- url: /goodreads/.*
-  script: goodreads.app
+- url: /goodreads-wall/.*
+  script: goodreads-wall.app
 
 - url: /python/.*
   script: python.app
