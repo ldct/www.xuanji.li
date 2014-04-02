@@ -16,5 +16,7 @@ isicp/*
 goodreads-wall/*
 libs/*
 random-projects/*
+2048/*
+static/PitchDetect/*
 
 goodreads/DEV_KEY_SECRET

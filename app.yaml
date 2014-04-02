@@ -31,8 +31,8 @@ handlers:
 - url: /python/css
   static_dir: css
 
-- url: /libgit2.js
-  static_dir: libgit2.js
+#- url: /libgit2.js
+#  static_dir: libgit2.js
 
 - url: /js-scheme-stk
   static_dir: js-scheme-stk
@@ -48,6 +48,13 @@ handlers:
 
 - url: /parallel-text/
   static_dir: parallel-text
+
+- url: /2048/
+  static_files: 2048/index.html
+  upload: 2048/index\.html
+
+- url: /2048
+  static_dir: 2048
 
 - url: /isicp/
   static_files: isicp/index.html
