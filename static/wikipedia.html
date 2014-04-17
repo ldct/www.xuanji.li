@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<style>
+.infobox, .dablink, .thumb {
+  display: none;
+}
+
+.shaded {
+  background-color: rgba(0,0,0,0.2);
+}
+</style>
+</head>
+<body>
+
+<div id="wiki">
+</div>
+
+<script>
+function kill_clicks() {
+  $("a").click(function(e) {
+    e.preventDefault();
+    var target = e.currentTarget;
+    var title = target.href.split('/');
+    title = title[title.length - 1];
+
+    var i = $("#" + title);
+    console.log(i.length);
+    if (i.length) {
+      console.log(i);
+      i.toggle();
+    } else {
+      $(target).after($("<span />", {'id': title}));      
+      load_wiki($("#" + title), title, true);
+      kill_clicks();
+    }
+  });
+}
+var response_dom;
+function load_wiki(dom_target, title, first_paragraph) {
+  $.ajax({
+    url: "http://en.wikipedia.org/w/api.php?format=json&action=parse&page=" + title,
+    dataType: "jsonp",
+    success: function(response) {
+      response_dom = $.parseHTML('<span>' + response.parse.text['*'] + '</span>');
+      if (first_paragraph) {
+        var fp = $(response_dom).find("p")[0];
+        $(fp).addClass("shaded");
+        dom_target.html(fp);
+      } else {
+        dom_target.html(response_dom);        
+      }
+      kill_clicks();
+    }
+  });
+}
+
+load_wiki($("#wiki"), 'Wavelength', false);
+
+</script>
+
+</body>
+</html>
