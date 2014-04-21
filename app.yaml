@@ -56,6 +56,9 @@ handlers:
 - url: /2048
   static_dir: 2048
 
+- url: /card.js
+  static_dir: card.js
+
 - url: /isicp/
   static_files: isicp/index.html
   upload: isicp/index\.html
