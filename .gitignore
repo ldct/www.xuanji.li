@@ -18,5 +18,8 @@ libs/*
 random-projects/*
 2048/*
 static/PitchDetect/*
+card.js/*
+
+static/images/wayne2.gif
 
 goodreads/DEV_KEY_SECRET
