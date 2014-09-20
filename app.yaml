@@ -14,13 +14,16 @@ libraries:
 - name: lxml
   version: latest
 
-handlers:  
+handlers:
 - url: /
   static_files: index.html
   upload: index\.html
 
 - url: /echo/.*
   script: echo.app
+
+- url: /py2js/.*
+  script: py2js.app
 
 - url: /goodreads-wall/.*
   script: goodreads-wall.app
