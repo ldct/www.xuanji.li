@@ -89,6 +89,7 @@ skip_files:
 
 - ^(.*/)?LICENSE
 - ^(.*/)?COPYING
+- ^(.*/)?Rakefile
 
 - ^(.*/)?.*.md
 - ^(.*/)?.*.scss
