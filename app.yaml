@@ -67,7 +67,8 @@ handlers:
   upload: isicp/index\.html
 
 - url: /isicp
-  static_dir: isicp
+  static_files: isicp/index.html
+  upload: isicp/index\.html
 
 - url: /favicon\.ico
   static_files: static/favicon.ico
