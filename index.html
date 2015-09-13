@@ -34,7 +34,10 @@ body {
 }
 
 a:visited { color: black;}
-a:link { color: black;}
+a:link {
+    color: black;
+    text-decoration: none;
+}
 
 h1 {
     font-weight: normal;
@@ -82,58 +85,55 @@ xuanji.li
     </div>
 </li>
 
+<a href="/isicp/index.html">
 <li class="skill-item">
     <div style="float:left; margin-right: 2em; margin-left: 1.5em">
-        <a href="isicp/images/screenshot.png">
         <img src="isicp/images/zoom-screenshot.png" width="300">
-        </a>
     </div>
     <div style="overflow: auto;">
-        <a href="/isicp/index.html"> <h1> Interactive SICP </h1> </a>
+        <h1> Interactive SICP </h1>
         <p> <b>Wizard Book</b> n. <i>Structure and Interpretation of Computer Programs</i>, an excellent computer science text used in introductory courses at MIT. So called because of the wizard on the jacket. One of the bibles of the LISP/Scheme world.
 
         <p> <b>Interactive SICP</b> n. <i> Interactive Structure and Interpretation of Computer Programs</i>. Online version of SICP with a built-in scheme interpreter to allow readers to edit and run the code embedded in SICP. (Work in progress)
 
     </div>
 </li>
+</a>
 
+<a href="static/books.html">
 <li class="skill-item">
     <div style="float:right; margin-right: 1em">
-        <a href="static/images/books.png">
-        <img src="static/images/zoom-books-small.jpg" width="300">
-        </a>
+        <img src="static/images/zoom-books-small.jpg" width="300" style="margin-left: 10px">
     </div>
     <div style="overflow: auto; margin-left: 2em; margin-right: 0;">
-        <a href="static/books.html"> <h1> Wall of Books</h1> </a>
+        <h1> Wall of Books</h1>
         <p> A very simple application that presents virtual wall of your reading life. You authorize this app to access your Goodreads account, and it fetches a list of all the books you've read and what you rated them. Then it queries both Goodreads and Google Books for a book cover. The rating you give for the book determines its size.
-
-        <p> Try it on your own account <a href="/goodreads/request">here</a>. Note: Google Books often returns 403 userRateLimitExceeded, making this fail.
     </div>
 </li>
+</a>
 
+<a href="js-scheme-stk/index.html">
 <li class="skill-item">
     <div style="float:left; margin-right: 1em">
-        <a href="static/images/box-pointer.png">
         <img src="static/images/box-pointer.png" width="300">
-        </a>
     </div>
     <div style="overflow: auto;">
-        <a href="js-scheme-stk/index.html"> <h1> Envdraw Extension to js-scheme </h1> </a>
+        <h1> Envdraw Extension to js-scheme </h1>
         <p> js-scheme is a scheme interpreter written in javascript. My version draws box-and-pointer diagrams, which are pictorial representations of data structures (cons cells) introduced by Abelson and Sussman in Structure and Interpretation of Comptuer Programs.
 
         <p> Eventually, I hope to be able to draw environment diagrams, as well as integrate this into Interactive SICP.
 
     </div>
 </li>
+</a>
 
+<a href="isicp/lambda.html">
 <li class="skill-item">
     <div style="float:right">
-        <a href="static/images/lambda-screenshot.png">
         <img src="static/images/lambda-screenshot.png" width="400">
-        </a>
     </div>
     <div style="overflow: auto; margin-left: 2em; margin-right: 0">
-        <a href="isicp/lambda.html"> <h1> From Church Numerals to Y Combinators</h1> </a>
+        <h1> From Church Numerals to Y Combinators</h1>
         <p> A guided, interactive tour of the lambda calculus. An interpreter, created by INA Lintaro, is embedded with pre-defined variables to allow you to complete the exercises.
 
         <p> The &lambda;-calculus is a formal system in mathematical logic and computer science for expressing computation. The objects of study are functions, and their arguments and return values are other functions. Learn how this seemingly impoverished universe can support numbers, conditional flow, booleans, data structures and recursion.
@@ -142,48 +142,48 @@ xuanji.li
 
     </div>
 </li>
+</a>
 
+<a href="parallel-text/text.html">
 <li class="skill-item">
     <div style="float:left; margin-right: 3em; margin-left: 2em; margin-bottom: 1em">
-        <a href="static/images/screenshot-magi.png">
         <img src="static/images/screenshot-magi-small.png" width="500">
-        </a>
     </div>
     <div style="overflow: auto;">
-        <a href="parallel-text/text.html"> <h1> Parallel Text Reader </h1> </a>
+        <h1> Parallel Text Reader </h1>
         <p> A small experiment for language learners. A parallel-language text is marked up and the two versions of the text are displayed side by side. When a user mouses over a phrase on one side, the corresponding phrase is highlighted on the other.
 
         <p> I tried to do this to the short story <em>The Gift of the Magi</em> by O. Henry.
 
     </div>
 </li>
+</a>
 
+<a href="//github.com/zodiac/libgit2.js">
 <li class="skill-item">
     <div style="float:right">
-        <a href="static/images/screenshot-libgit.png">
         <img src="static/images/screenshot-libgit.png" width="300">
-        </a>
     </div>
     <div style="overflow: auto; margin-left: 2em; margin-right: 0">
-        <a href="libgit2.js/main.html"> <h1> libgit2.js</h1> </a>
+        <h1> libgit2.js</h1>
         <p> libgit2 is a re-implementation of the git core functions as a C library. libgit2.js is my attempt to port it to javascript so that it runs in the browser. I compiled it using the Emscripten framework, which uses llvm to compile the code to an intermediate representation and then emits javascript from there.
 
     </div>
 </li>
+</a>
 
+<a href="https://github.com/zodiac/fsm">
 <li class="skill-item">
     <div style="float:left; margin-right: 2em; margin-top: 1em; margin-left: 1em">
-        <a href="static/images/fsm-screenshot.jpg">
         <img src="static/images/fsm-screenshot-small.jpg" width="300">
-        </a>
     </div>
     <div style="overflow: auto;">
-        <a href="https://github.com/zodiac/fsm"> <h1> fsm </h1> </a>
+        <h1> fsm </h1>
         <p> fsm organizes your music by the folders the audio files actually reside in on disk. Perfect for people whose music does not naturally follow the album/artist organization that most music players rely on. Also takes album art from associated folder.
 
     </div>
 </li>
-
+</a>
 
 
 <li class="skill-item">
