@@ -10,3 +10,5 @@
 - clone goodreads-wall
 - clone 2048
 - clone card.js
+
+- while still in `xuanji.appspot.com` folder: `appcfg.py update .`
