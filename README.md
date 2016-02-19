@@ -2,8 +2,9 @@
 
 - clone this repo, cd into it
 - clone isicp
-- cd into isicp, clone coding-js
-- cd into isicp, run render_all.sh
+- cd into `isicp`, clone coding-js
+- while in `isicp`, run render_all.sh
+- cd into `xuanji.appspot.com`
 - clone parallel-text
 - clone js-scheme-stk
 - clone goodreads-wall
